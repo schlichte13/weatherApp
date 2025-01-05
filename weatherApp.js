@@ -1,8 +1,13 @@
 
-const DEFAULT_WEATHER_API_LINK ='https://api.weather.gov/gridpoints/GYX/';
+var DEFAULT_WEATHER_API_LINK ='https://api.weather.gov/gridpoints/GYX/';
 var WEATHER_API_LINK = 'https://api.weather.gov/gridpoints/GYX/38,31/forecast';
 
-let weatherData = [];
+let dayZeroDetailedForecast;
+let dayZeroName;
+let dayOneDetailedForecast;
+let dayOneName;
+let dayTwoDetailedForecast;
+let dayTwoName;
 
 
 const getForecastButton = document.getElementById("getForecastButton");
@@ -33,9 +38,26 @@ function updateContent(){
     .then(data => {
         //Process the response data here
         //Use data according to your need
-        weatherData = data.properties.periods[0].detailedForecast; //Example: Logging the data to the console
-        document.getElementById('weatherForecastText').textContent = weatherData;
-        //JSON.filter?
+
+        //Getting the weather data for each day
+        dayZeroDetailedForecast = data.properties.periods[0].detailedForecast;
+        dayZeroName = data.properties.periods[0].name;
+
+        dayOneDetailedForecast = data.properties.periods[1].detailedForecast;
+        dayOneName = data.properties.periods[1].name;
+
+        dayTwoDetailedForecast = data.properties.periods[2].detailedForecast;
+        dayTwoName = data.properties.periods[2].name;
+
+        //Sending the weather data to the HTML
+        document.getElementById('name2').textContent = dayOneName;
+        document.getElementById('output2').textContent = dayOneDetailedForecast;
+
+        document.getElementById('name1').textContent = dayZeroName;
+        document.getElementById('output1').textContent = dayZeroDetailedForecast;
+
+        document.getElementById('name3').textContent = dayTwoName;
+        document.getElementById('output3').textContent = dayTwoDetailedForecast;  
     })
     .catch(error => {
         //Handle any errors here
