@@ -9,7 +9,6 @@ let dayOneName;
 let dayTwoDetailedForecast;
 let dayTwoName;
 
-
 const getForecastButton = document.getElementById("getForecastButton");
 getForecastButton.addEventListener("click", () => {
     localizeWeatherAPI();
@@ -26,6 +25,7 @@ function localizeWeatherAPI(){
 function setLocalizedApi(longitude, latitude){
     WEATHER_API_LINK = DEFAULT_WEATHER_API_LINK+longitude+','+latitude+'/forecast';
 }
+
 function updateContent(){
     fetch(WEATHER_API_LINK)
     .then(response => {
