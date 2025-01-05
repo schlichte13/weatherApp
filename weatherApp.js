@@ -11,10 +11,8 @@ fetch('https://api.weather.gov/gridpoints/GYX/38,31/forecast')
     .then(data => {
         //Process the response data here
         //Use data according to your need
-        console.log(data); //Example: Logging the data to the console
-        weatherData = JSON.stringify(data);
-        console.log(weatherData);
-        //document.getElementById('output').textContent = JSON.stringify(data);
+        weatherData = data.properties.periods[0].detailedForecast; //Example: Logging the data to the console
+        document.getElementById('output').textContent = weatherData;
 
         //JSON.filter?
     })
