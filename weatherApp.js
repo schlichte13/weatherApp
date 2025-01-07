@@ -1,5 +1,5 @@
-var DEFAULT_WEATHER_API_LINK ='https://api.weather.gov/gridpoints/GYX/';
-var WEATHER_API_LINK = 'https://api.weather.gov/gridpoints/GYX/38,31/forecast';
+var WEATHER_API_LINK = 'https://api.weather.gov/points/';
+var FINAL_WEATHER_API_LINK;
 
 let dayZeroDetailedForecast;
 let dayZeroName;
@@ -11,22 +11,44 @@ let dayTwoName;
 const getForecastButton = document.getElementById("getForecastButton");
 getForecastButton.addEventListener("click", () => {
     localizeWeatherAPI();
+    updateContent();
 })
 
 function localizeWeatherAPI(){
-    let inputZipCode = document.querySelector("#zipCode").value
-    if(inputZipCode !== ""){
-        setLocalizedApi(38,31);
-        updateContent();
+    let inputState = document.querySelector("#sateInput").value
+    if(inputState !== ""){
+        console.log(inputState);
+        setLongAndLat(inputState);
+        console.log(longitude);
+        console.log(latitude);
+        setLocalizedApi(longitude,latitude);
     }
 }
 
 function setLocalizedApi(longitude, latitude){
-    WEATHER_API_LINK = DEFAULT_WEATHER_API_LINK+longitude+','+latitude+'/forecast';
+    fetch(WEATHER_API_LINK+latitude+','+longitude)
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        FINAL_WEATHER_API_LINK = data.properties.forecast;
+        console.log(FINAL_WEATHER_API_LINK);
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+
+    function printData(){
+        setLongAndLat("NH");
+        console.log("log: "+longitude+" | lat: "+latitude);
+    }
 }
 
 function updateContent(){
-    fetch(WEATHER_API_LINK)
+    fetch(FINAL_WEATHER_API_LINK)
     .then(response => {
         if (response.ok){
             return response.json(); //Parse the response data as JSON
