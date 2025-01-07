@@ -35,9 +35,6 @@ function updateContent(){
         }
     })
     .then(data => {
-        //Process the response data here
-        //Use data according to your need
-
         //Getting the weather data for each day
         dayZeroDetailedForecast = data.properties.periods[0].detailedForecast;
         dayZeroName = data.properties.periods[0].name;
@@ -56,10 +53,9 @@ function updateContent(){
         document.getElementById('output1').textContent = dayZeroDetailedForecast;
 
         document.getElementById('name3').textContent = dayTwoName;
-        document.getElementById('output3').textContent = dayTwoDetailedForecast;  
+        document.getElementById('output3').textContent = dayTwoDetailedForecast;
     })
     .catch(error => {
-        //Handle any errors here
         console.error(error); //Example: Logging the error to the console
     });
 }

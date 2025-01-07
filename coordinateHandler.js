@@ -1,22 +1,20 @@
-
 var coordinateData;
 var longitude;
 var latitude;
 
+//gets the raw json from a github page with state capital geolocation data
 fetch('https://gist.githubusercontent.com/jpriebe/d62a45e29f24e843c974/raw/b1d3066d245e742018bce56e41788ac7afa60e29/us_state_capitals.json')
 .then(response => {
     if (!response.ok) {
     throw new Error('Network response was not ok');
     }
-    return response.json(); // Parse the response as JSON
+    return response.json();
 })
 .then(data => {
-    // Do something with the JSON data
     coordinateData = data;
     printData();
 })
 .catch(error => {
-    // Handle any errors that occurred during the fetch
     console.error('There was a problem with the fetch operation:', error);
 });
 
@@ -25,7 +23,7 @@ function printData(){
     console.log("log: "+longitude+" | lat: "+latitude);
 }
 
-
+// takes a two letter state string, checks each state, and grabs the appropritate long and lat values from json data (coordinateData) then changes the golbal values.
 function setLongAndLat(stateString){
     switch (stateString) {
         case "AL":
@@ -232,4 +230,3 @@ function setLongAndLat(stateString){
             throw new Error("Please enter a valid Two letter state abriviation");
     }
 }
-
