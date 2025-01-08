@@ -1,7 +1,6 @@
 const inputElement = document.getElementById("myInput");
 const buttonElement = document.getElementById("myButton");
 
-let userAddress;
 let addressToCoordinatesURL;
 let addressToWeatherURL;
 let finalWeatherURL;
@@ -40,9 +39,10 @@ let dayTwelveName;
 let dayThirteenDetailedForecast;
 let dayThirteenName;
 
+updateContent();
 
-buttonElement.addEventListener("click", () => {
-    userAddress = inputElement.value;
+function updateContent(){
+    const userAddress= sessionStorage.getItem("userAddress");
 
     //userAddress = "21, Centre Street, Concord, New Hampshire, 03301, United States"
     addressToCoordinatesURL = "https://geocode.maps.co/search?q=" + userAddress + "&api_key=677c3b8539037667847106teq80457c";
@@ -203,6 +203,6 @@ buttonElement.addEventListener("click", () => {
     });
 
 
-})
+}
 
 
