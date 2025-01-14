@@ -15,3 +15,9 @@ p {
     color: white;
     text-align: center;
 }
+
+img {
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
