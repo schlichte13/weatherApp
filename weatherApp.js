@@ -1,5 +1,6 @@
 const inputElement = document.getElementById("myInput");
 const buttonElement = document.getElementById("myButton");
+const homeButton = document.getElementById("homeButton");
 
 let addressToCoordinatesURL;
 let addressToWeatherURL;
@@ -249,6 +250,11 @@ function displayWeather(){
         //Handle any errors here
         console.error(error); //Example: Logging the error to the console
     });
+
+    homeButton.addEventListener("click", () => {
+        document.location.href="home.html"
+    });
+
     //Sending the weather data to the HTML
     //document.getElementById('name4').textContent = userLatitude;
     //document.getElementById('output4').textContent = userLongitude;
