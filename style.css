@@ -20,4 +20,26 @@ img {
     border-radius: 8px;
     display: block;
     margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.weatherInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-style: solid;
+    border-radius: 25px;
+    border-color: rgb(218, 210, 97);
+    width: 80ch;
+    margin: 20px;
+}
+
+.weatherDisplay{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
 }
